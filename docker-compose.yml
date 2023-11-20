@@ -1,0 +1,22 @@
+version: '3.3'
+
+include: ["../launcher-server/docker-compose.yml"]
+
+services:
+  caddy-proxy:
+    build: .
+    container_name: caddy-proxy
+    image: caddy-frieren-proxy
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - '80:80'
+      - '443:443'
+    entrypoint: ["caddy", "run", "-c", "/etc/caddy/Caddyfile"]
+    networks:
+      - launcher-server-network-bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

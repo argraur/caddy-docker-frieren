@@ -1,0 +1,3 @@
+https://launcher.frieren.argraur.dev {
+    reverse_proxy launcher-server:8080
+}
